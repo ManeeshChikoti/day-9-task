@@ -1,0 +1,1258 @@
+1.Solving problems using array functions on rest countries data.
+  a.Get all the countries from Asia continent /region using Filter function
+ //not added html here
+
+Answer:
+
+var xhr=new XMLHttpRequest();
+xhr.open('GET',"https://restcountries.com/v3.1/all");
+xhr.onload=function(){
+     if(xhr.status>=200 && xhr.status<300)
+  {
+     let data=JSON.parse(this.response);
+     data=data.filter((ref)=>
+     { 
+         if((ref.continents).toString()==="Asia")
+         { 
+             console.log(ref.name.common);
+         }
+    })
+  }
+}
+xhr.send();
+
+Output:
+task9.js:11 Maldives
+task9.js:11 Bhutan
+task9.js:11 Christmas Island
+task9.js:11 Uzbekistan
+task9.js:11 Iraq
+task9.js:11 Yemen
+task9.js:11 Malaysia
+task9.js:11 Mongolia
+task9.js:11 Oman
+task9.js:11 Singapore
+task9.js:11 Turkey
+task9.js:11 Nepal
+task9.js:11 Indonesia
+task9.js:11 North Korea
+task9.js:11 Bangladesh
+task9.js:11 Pakistan
+task9.js:11 Armenia
+task9.js:11 Myanmar
+task9.js:11 Japan
+task9.js:11 Cambodia
+task9.js:11 Qatar
+task9.js:11 Hong Kong
+task9.js:11 Turkmenistan
+task9.js:11 Lebanon
+task9.js:11 Kazakhstan
+task9.js:11 Kyrgyzstan
+task9.js:11 Sri Lanka
+task9.js:11 Thailand
+task9.js:11 Vietnam
+task9.js:11 Palestine
+task9.js:11 British Indian Ocean Territory
+task9.js:11 Syria
+task9.js:11 Israel
+task9.js:11 Macau
+task9.js:11 Philippines
+task9.js:11 Taiwan
+task9.js:11 Saudi Arabia
+task9.js:11 Cocos (Keeling) Islands
+task9.js:11 South Korea
+task9.js:11 Georgia
+task9.js:11 Tajikistan
+task9.js:11 United Arab Emirates
+task9.js:11 Iran
+task9.js:11 Laos
+task9.js:11 Afghanistan
+task9.js:11 Kuwait
+task9.js:11 India
+task9.js:11 Jordan
+task9.js:11 China
+task9.js:11 Azerbaijan
+task9.js:11 Bahrain
+task9.js:11 Brunei
+
+b.Get all the countries with a population of less than 2 lakhs using Filter function
+
+Answer:
+
+var xhr=new XMLHttpRequest();
+xhr.open('GET',"https://restcountries.com/v3.1/all");
+xhr.onload=function(){
+     if(xhr.status>=200 && xhr.status<300)
+  {
+     let data=JSON.parse(this.response);
+     data=data.filter((ref)=>
+     { 
+         if(ref.population<200000)
+         { 
+             console.log(ref.name.common);
+         }
+    })
+  }
+}
+xhr.send();
+
+Output:
+
+task9b.js:11 Bouvet Island
+task9b.js:11 Nauru
+task9b.js:11 Turks and Caicos Islands
+task9b.js:11 Sint Maarten
+task9b.js:11 Saint Vincent and the Grenadines
+task9b.js:11 Christmas Island
+task9b.js:11 Aruba
+task9b.js:11 French Southern and Antarctic Lands
+task9b.js:11 Tonga
+task9b.js:11 South Georgia
+task9b.js:11 Saint Barthélemy
+task9b.js:11 Cook Islands
+task9b.js:11 Jersey
+task9b.js:11 Monaco
+task9b.js:11 Wallis and Futuna
+task9b.js:11 Antigua and Barbuda
+task9b.js:11 Saint Kitts and Nevis
+task9b.js:11 Samoa
+task9b.js:11 Liechtenstein
+task9b.js:11 Faroe Islands
+task9b.js:11 United States Virgin Islands
+task9b.js:11 Montserrat
+task9b.js:11 Northern Mariana Islands
+task9b.js:11 Saint Lucia
+task9b.js:11 Seychelles
+task9b.js:11 Saint Pierre and Miquelon
+task9b.js:11 Niue
+task9b.js:11 Palau
+task9b.js:11 Åland Islands
+task9b.js:11 Curaçao
+task9b.js:11 Guernsey
+task9b.js:11 Dominica
+task9b.js:11 Tokelau
+task9b.js:11 Guam
+task9b.js:11 Bermuda
+task9b.js:11 British Virgin Islands
+task9b.js:11 San Marino
+task9b.js:11 Gibraltar
+task9b.js:11 Tuvalu
+task9b.js:11 Norfolk Island
+task9b.js:11 Falkland Islands
+task9b.js:11 Micronesia
+task9b.js:11 Isle of Man
+task9b.js:11 Vatican City
+task9b.js:11 United States Minor Outlying Islands
+task9b.js:11 Svalbard and Jan Mayen
+task9b.js:11 American Samoa
+task9b.js:11 Greenland
+task9b.js:11 British Indian Ocean Territory
+task9b.js:11 Antarctica
+task9b.js:11 Grenada
+task9b.js:11 Heard Island and McDonald Islands
+task9b.js:11 Saint Martin
+task9b.js:11 Caribbean Netherlands
+task9b.js:11 Cocos (Keeling) Islands
+task9b.js:11 Saint Helena, Ascension and Tristan da Cunha
+task9b.js:11 Cayman Islands
+task9b.js:11 Kiribati
+task9b.js:11 Andorra
+task9b.js:11 Pitcairn Islands
+task9b.js:11 Anguilla
+task9b.js:11 Marshall Islands
+
+c.Print the following details name, capital, flag using forEach function
+
+Answer:
+
+var xhr=new XMLHttpRequest();
+xhr.open('GET',"https://restcountries.com/v3.1/all");
+xhr.onload=function(){
+     if(xhr.status>=200 && xhr.status<300)
+  {
+     let data=JSON.parse(this.response);
+     //flag is used to get code of the country flag in restcountries
+     //if we want print the flag image we cane use flags instead of flag
+     //i tried to print flag and flags
+      data=data.forEach((element) => {
+         console.log(  `countryname:${element.name.common},
+          capital:${element.capital},
+           flagcode:${element.flag},
+         flag:${element.flags.png}`
+         )
+     });
+    
+  }
+}
+xhr.send();
+
+Output:
+
+task9c.js:11 countryname:Nigeria,
+          capital:Abuja,
+           flagcode:🇳🇬,
+         flag:https://flagcdn.com/w320/ng.png
+task9c.js:11 countryname:Denmark,
+          capital:Copenhagen,
+           flagcode:🇩🇰,
+         flag:https://flagcdn.com/w320/dk.png
+task9c.js:11 countryname:Bouvet Island,
+          capital:undefined,
+           flagcode:🇧🇻,
+         flag:https://flagcdn.com/w320/bv.png
+task9c.js:11 countryname:Romania,
+          capital:Bucharest,
+           flagcode:🇷🇴,
+         flag:https://flagcdn.com/w320/ro.png
+task9c.js:11 countryname:Nauru,
+          capital:Yaren,
+           flagcode:🇳🇷,
+         flag:https://flagcdn.com/w320/nr.png
+task9c.js:11 countryname:Guinea,
+          capital:Conakry,
+           flagcode:🇬🇳,
+         flag:https://flagcdn.com/w320/gn.png
+task9c.js:11 countryname:Gambia,
+          capital:Banjul,
+           flagcode:🇬🇲,
+         flag:https://flagcdn.com/w320/gm.png
+task9c.js:11 countryname:Turks and Caicos Islands,
+          capital:Cockburn Town,
+           flagcode:🇹🇨,
+         flag:https://flagcdn.com/w320/tc.png
+task9c.js:11 countryname:Serbia,
+          capital:Belgrade,
+           flagcode:🇷🇸,
+         flag:https://flagcdn.com/w320/rs.png
+task9c.js:11 countryname:Sint Maarten,
+          capital:Philipsburg,
+           flagcode:🇸🇽,
+         flag:https://flagcdn.com/w320/sx.png
+task9c.js:11 countryname:Saint Vincent and the Grenadines,
+          capital:Kingstown,
+           flagcode:🇻🇨,
+         flag:https://flagcdn.com/w320/vc.png
+task9c.js:11 countryname:Maldives,
+          capital:Malé,
+           flagcode:🇲🇻,
+         flag:https://flagcdn.com/w320/mv.png
+task9c.js:11 countryname:Uruguay,
+          capital:Montevideo,
+           flagcode:🇺🇾,
+         flag:https://flagcdn.com/w320/uy.png
+task9c.js:11 countryname:Iceland,
+          capital:Reykjavik,
+           flagcode:🇮🇸,
+         flag:https://flagcdn.com/w320/is.png
+task9c.js:11 countryname:Ukraine,
+          capital:Kyiv,
+           flagcode:🇺🇦,
+         flag:https://flagcdn.com/w320/ua.png
+task9c.js:11 countryname:Bhutan,
+          capital:Thimphu,
+           flagcode:🇧🇹,
+         flag:https://flagcdn.com/w320/bt.png
+task9c.js:11 countryname:Mexico,
+          capital:Mexico City,
+           flagcode:🇲🇽,
+         flag:https://flagcdn.com/w320/mx.png
+task9c.js:11 countryname:Venezuela,
+          capital:Caracas,
+           flagcode:🇻🇪,
+         flag:https://flagcdn.com/w320/ve.png
+task9c.js:11 countryname:Christmas Island,
+          capital:Flying Fish Cove,
+           flagcode:🇨🇽,
+         flag:https://flagcdn.com/w320/cx.png
+task9c.js:11 countryname:Uzbekistan,
+          capital:Tashkent,
+           flagcode:🇺🇿,
+         flag:https://flagcdn.com/w320/uz.png
+task9c.js:11 countryname:Togo,
+          capital:Lomé,
+           flagcode:🇹🇬,
+         flag:https://flagcdn.com/w320/tg.png
+task9c.js:11 countryname:Malawi,
+          capital:Lilongwe,
+           flagcode:🇲🇼,
+         flag:https://flagcdn.com/w320/mw.png
+task9c.js:11 countryname:Tanzania,
+          capital:Dodoma,
+           flagcode:🇹🇿,
+         flag:https://flagcdn.com/w320/tz.png
+task9c.js:11 countryname:Belarus,
+          capital:Minsk,
+           flagcode:🇧🇾,
+         flag:https://flagcdn.com/w320/by.png
+task9c.js:11 countryname:Aruba,
+          capital:Oranjestad,
+           flagcode:🇦🇼,
+         flag:https://flagcdn.com/w320/aw.png
+task9c.js:11 countryname:Iraq,
+          capital:Baghdad,
+           flagcode:🇮🇶,
+         flag:https://flagcdn.com/w320/iq.png
+task9c.js:11 countryname:French Southern and Antarctic Lands,
+          capital:Port-aux-Français,
+           flagcode:🇹🇫,
+         flag:https://flagcdn.com/w320/tf.png
+task9c.js:11 countryname:Tonga,
+          capital:Nuku'alofa,
+           flagcode:🇹🇴,
+         flag:https://flagcdn.com/w320/to.png
+task9c.js:11 countryname:Croatia,
+          capital:Zagreb,
+           flagcode:🇭🇷,
+         flag:https://flagcdn.com/w320/hr.png
+task9c.js:11 countryname:South Georgia,
+          capital:King Edward Point,
+           flagcode:🇬🇸,
+         flag:https://flagcdn.com/w320/gs.png
+task9c.js:11 countryname:Yemen,
+          capital:Sana'a,
+           flagcode:🇾🇪,
+         flag:https://flagcdn.com/w320/ye.png
+task9c.js:11 countryname:Malaysia,
+          capital:Kuala Lumpur,
+           flagcode:🇲🇾,
+         flag:https://flagcdn.com/w320/my.png
+task9c.js:11 countryname:Saint Barthélemy,
+          capital:Gustavia,
+           flagcode:🇧🇱,
+         flag:https://flagcdn.com/w320/bl.png
+task9c.js:11 countryname:Cook Islands,
+          capital:Avarua,
+           flagcode:🇨🇰,
+         flag:https://flagcdn.com/w320/ck.png
+task9c.js:11 countryname:Jersey,
+          capital:Saint Helier,
+           flagcode:🇯🇪,
+         flag:https://flagcdn.com/w320/je.png
+task9c.js:11 countryname:Mongolia,
+          capital:Ulan Bator,
+           flagcode:🇲🇳,
+         flag:https://flagcdn.com/w320/mn.png
+task9c.js:11 countryname:Monaco,
+          capital:Monaco,
+           flagcode:🇲🇨,
+         flag:https://flagcdn.com/w320/mc.png
+task9c.js:11 countryname:Australia,
+          capital:Canberra,
+           flagcode:🇦🇺,
+         flag:https://flagcdn.com/w320/au.png
+task9c.js:11 countryname:Ecuador,
+          capital:Quito,
+           flagcode:🇪🇨,
+         flag:https://flagcdn.com/w320/ec.png
+task9c.js:11 countryname:Finland,
+          capital:Helsinki,
+           flagcode:🇫🇮,
+         flag:https://flagcdn.com/w320/fi.png
+task9c.js:11 countryname:Madagascar,
+          capital:Antananarivo,
+           flagcode:🇲🇬,
+         flag:https://flagcdn.com/w320/mg.png
+task9c.js:11 countryname:Ireland,
+          capital:Dublin,
+           flagcode:🇮🇪,
+         flag:https://flagcdn.com/w320/ie.png
+task9c.js:11 countryname:Sweden,
+          capital:Stockholm,
+           flagcode:🇸🇪,
+         flag:https://flagcdn.com/w320/se.png
+task9c.js:11 countryname:New Zealand,
+          capital:Wellington,
+           flagcode:🇳🇿,
+         flag:https://flagcdn.com/w320/nz.png
+task9c.js:11 countryname:Wallis and Futuna,
+          capital:Mata-Utu,
+           flagcode:🇼🇫,
+         flag:https://flagcdn.com/w320/wf.png
+task9c.js:11 countryname:Oman,
+          capital:Muscat,
+           flagcode:🇴🇲,
+         flag:https://flagcdn.com/w320/om.png
+task9c.js:11 countryname:Antigua and Barbuda,
+          capital:Saint John's,
+           flagcode:🇦🇬,
+         flag:https://flagcdn.com/w320/ag.png
+task9c.js:11 countryname:Saint Kitts and Nevis,
+          capital:Basseterre,
+           flagcode:🇰🇳,
+         flag:https://flagcdn.com/w320/kn.png
+task9c.js:11 countryname:New Caledonia,
+          capital:Nouméa,
+           flagcode:🇳🇨,
+         flag:https://flagcdn.com/w320/nc.png
+task9c.js:11 countryname:Samoa,
+          capital:Apia,
+           flagcode:🇼🇸,
+         flag:https://flagcdn.com/w320/ws.png
+task9c.js:11 countryname:Canada,
+          capital:Ottawa,
+           flagcode:🇨🇦,
+         flag:https://flagcdn.com/w320/ca.png
+task9c.js:11 countryname:Singapore,
+          capital:Singapore,
+           flagcode:🇸🇬,
+         flag:https://flagcdn.com/w320/sg.png
+task9c.js:11 countryname:Guatemala,
+          capital:Guatemala City,
+           flagcode:🇬🇹,
+         flag:https://flagcdn.com/w320/gt.png
+task9c.js:11 countryname:Turkey,
+          capital:Ankara,
+           flagcode:🇹🇷,
+         flag:https://flagcdn.com/w320/tr.png
+task9c.js:11 countryname:Nepal,
+          capital:Kathmandu,
+           flagcode:🇳🇵,
+         flag:https://flagcdn.com/w320/np.png
+task9c.js:11 countryname:Liechtenstein,
+          capital:Vaduz,
+           flagcode:🇱🇮,
+         flag:https://flagcdn.com/w320/li.png
+task9c.js:11 countryname:Bosnia and Herzegovina,
+          capital:Sarajevo,
+           flagcode:🇧🇦,
+         flag:https://flagcdn.com/w320/ba.png
+task9c.js:11 countryname:Chad,
+          capital:N'Djamena,
+           flagcode:🇹🇩,
+         flag:https://flagcdn.com/w320/td.png
+task9c.js:11 countryname:Bolivia,
+          capital:Sucre,
+           flagcode:🇧🇴,
+         flag:https://flagcdn.com/w320/bo.png
+task9c.js:11 countryname:Haiti,
+          capital:Port-au-Prince,
+           flagcode:🇭🇹,
+         flag:https://flagcdn.com/w320/ht.png
+task9c.js:11 countryname:Faroe Islands,
+          capital:Tórshavn,
+           flagcode:🇫🇴,
+         flag:https://flagcdn.com/w320/fo.png
+task9c.js:11 countryname:Mauritius,
+          capital:Port Louis,
+           flagcode:🇲🇺,
+         flag:https://flagcdn.com/w320/mu.png
+task9c.js:11 countryname:United States Virgin Islands,
+          capital:Charlotte Amalie,
+           flagcode:🇻🇮,
+         flag:https://flagcdn.com/w320/vi.png
+task9c.js:11 countryname:Montserrat,
+          capital:Plymouth,
+           flagcode:🇲🇸,
+         flag:https://flagcdn.com/w320/ms.png
+task9c.js:11 countryname:Guyana,
+          capital:Georgetown,
+           flagcode:🇬🇾,
+         flag:https://flagcdn.com/w320/gy.png
+task9c.js:11 countryname:Northern Mariana Islands,
+          capital:Saipan,
+           flagcode:🇲🇵,
+         flag:https://flagcdn.com/w320/mp.png
+task9c.js:11 countryname:Saint Lucia,
+          capital:Castries,
+           flagcode:🇱🇨,
+         flag:https://flagcdn.com/w320/lc.png
+task9c.js:11 countryname:Indonesia,
+          capital:Jakarta,
+           flagcode:🇮🇩,
+         flag:https://flagcdn.com/w320/id.png
+task9c.js:11 countryname:Austria,
+          capital:Vienna,
+           flagcode:🇦🇹,
+         flag:https://flagcdn.com/w320/at.png
+task9c.js:11 countryname:Guadeloupe,
+          capital:Basse-Terre,
+           flagcode:🇬🇵,
+         flag:https://flagcdn.com/w320/gp.png
+task9c.js:11 countryname:Eritrea,
+          capital:Asmara,
+           flagcode:🇪🇷,
+         flag:https://flagcdn.com/w320/er.png
+task9c.js:11 countryname:North Korea,
+          capital:Pyongyang,
+           flagcode:🇰🇵,
+         flag:https://flagcdn.com/w320/kp.png
+task9c.js:11 countryname:Seychelles,
+          capital:Victoria,
+           flagcode:🇸🇨,
+         flag:https://flagcdn.com/w320/sc.png
+task9c.js:11 countryname:Bangladesh,
+          capital:Dhaka,
+           flagcode:🇧🇩,
+         flag:https://flagcdn.com/w320/bd.png
+task9c.js:11 countryname:Botswana,
+          capital:Gaborone,
+           flagcode:🇧🇼,
+         flag:https://flagcdn.com/w320/bw.png
+task9c.js:11 countryname:Saint Pierre and Miquelon,
+          capital:Saint-Pierre,
+           flagcode:🇵🇲,
+         flag:https://flagcdn.com/w320/pm.png
+task9c.js:11 countryname:Pakistan,
+          capital:Islamabad,
+           flagcode:🇵🇰,
+         flag:https://flagcdn.com/w320/pk.png
+task9c.js:11 countryname:Barbados,
+          capital:Bridgetown,
+           flagcode:🇧🇧,
+         flag:https://flagcdn.com/w320/bb.png
+task9c.js:11 countryname:Martinique,
+          capital:Fort-de-France,
+           flagcode:🇲🇶,
+         flag:https://flagcdn.com/w320/mq.png
+task9c.js:11 countryname:Niue,
+          capital:Alofi,
+           flagcode:🇳🇺,
+         flag:https://flagcdn.com/w320/nu.png
+task9c.js:11 countryname:Palau,
+          capital:Ngerulmud,
+           flagcode:🇵🇼,
+         flag:https://flagcdn.com/w320/pw.png
+task9c.js:11 countryname:Armenia,
+          capital:Yerevan,
+           flagcode:🇦🇲,
+         flag:https://flagcdn.com/w320/am.png
+task9c.js:11 countryname:Myanmar,
+          capital:Naypyidaw,
+           flagcode:🇲🇲,
+         flag:https://flagcdn.com/w320/mm.png
+task9c.js:11 countryname:Réunion,
+          capital:Saint-Denis,
+           flagcode:🇷🇪,
+         flag:https://flagcdn.com/w320/re.png
+task9c.js:11 countryname:Netherlands,
+          capital:Amsterdam,
+           flagcode:🇳🇱,
+         flag:https://flagcdn.com/w320/nl.png
+task9c.js:11 countryname:Åland Islands,
+          capital:Mariehamn,
+           flagcode:🇦🇽,
+         flag:https://flagcdn.com/w320/ax.png
+task9c.js:11 countryname:Cameroon,
+          capital:Yaoundé,
+           flagcode:🇨🇲,
+         flag:https://flagcdn.com/w320/cm.png
+task9c.js:11 countryname:Portugal,
+          capital:Lisbon,
+           flagcode:🇵🇹,
+         flag:https://flagcdn.com/w320/pt.png
+task9c.js:11 countryname:Paraguay,
+          capital:Asunción,
+           flagcode:🇵🇾,
+         flag:https://flagcdn.com/w320/py.png
+task9c.js:11 countryname:Curaçao,
+          capital:Willemstad,
+           flagcode:🇨🇼,
+         flag:https://flagcdn.com/w320/cw.png
+task9c.js:11 countryname:Honduras,
+          capital:Tegucigalpa,
+           flagcode:🇭🇳,
+         flag:https://flagcdn.com/w320/hn.png
+task9c.js:11 countryname:Zimbabwe,
+          capital:Harare,
+           flagcode:🇿🇼,
+         flag:https://flagcdn.com/w320/zw.png
+task9c.js:11 countryname:Malta,
+          capital:Valletta,
+           flagcode:🇲🇹,
+         flag:https://flagcdn.com/w320/mt.png
+task9c.js:11 countryname:Guernsey,
+          capital:St. Peter Port,
+           flagcode:🇬🇬,
+         flag:https://flagcdn.com/w320/gg.png
+task9c.js:11 countryname:Japan,
+          capital:Tokyo,
+           flagcode:🇯🇵,
+         flag:https://flagcdn.com/w320/jp.png
+task9c.js:11 countryname:Somalia,
+          capital:Mogadishu,
+           flagcode:🇸🇴,
+         flag:https://flagcdn.com/w320/so.png
+task9c.js:11 countryname:Greece,
+          capital:Athens,
+           flagcode:🇬🇷,
+         flag:https://flagcdn.com/w320/gr.png
+task9c.js:11 countryname:Cambodia,
+          capital:Phnom Penh,
+           flagcode:🇰🇭,
+         flag:https://flagcdn.com/w320/kh.png
+task9c.js:11 countryname:Dominica,
+          capital:Roseau,
+           flagcode:🇩🇲,
+         flag:https://flagcdn.com/w320/dm.png
+task9c.js:11 countryname:Tokelau,
+          capital:Fakaofo,
+           flagcode:🇹🇰,
+         flag:https://flagcdn.com/w320/tk.png
+task9c.js:11 countryname:Guam,
+          capital:Hagåtña,
+           flagcode:🇬🇺,
+         flag:https://flagcdn.com/w320/gu.png
+task9c.js:11 countryname:Ghana,
+          capital:Accra,
+           flagcode:🇬🇭,
+         flag:https://flagcdn.com/w320/gh.png
+task9c.js:11 countryname:Qatar,
+          capital:Doha,
+           flagcode:🇶🇦,
+         flag:https://flagcdn.com/w320/qa.png
+task9c.js:11 countryname:El Salvador,
+          capital:San Salvador,
+           flagcode:🇸🇻,
+         flag:https://flagcdn.com/w320/sv.png
+task9c.js:11 countryname:Bermuda,
+          capital:Hamilton,
+           flagcode:🇧🇲,
+         flag:https://flagcdn.com/w320/bm.png
+task9c.js:11 countryname:Hong Kong,
+          capital:City of Victoria,
+           flagcode:🇭🇰,
+         flag:https://flagcdn.com/w320/hk.png
+task9c.js:11 countryname:Puerto Rico,
+          capital:San Juan,
+           flagcode:🇵🇷,
+         flag:https://flagcdn.com/w320/pr.png
+task9c.js:11 countryname:Solomon Islands,
+          capital:Honiara,
+           flagcode:🇸🇧,
+         flag:https://flagcdn.com/w320/sb.png
+task9c.js:11 countryname:British Virgin Islands,
+          capital:Road Town,
+           flagcode:🇻🇬,
+         flag:https://flagcdn.com/w320/vg.png
+task9c.js:11 countryname:Republic of the Congo,
+          capital:Brazzaville,
+           flagcode:🇨🇬,
+         flag:https://flagcdn.com/w320/cg.png
+task9c.js:11 countryname:Norway,
+          capital:Oslo,
+           flagcode:🇳🇴,
+         flag:https://flagcdn.com/w320/no.png
+task9c.js:11 countryname:Latvia,
+          capital:Riga,
+           flagcode:🇱🇻,
+         flag:https://flagcdn.com/w320/lv.png
+task9c.js:11 countryname:Peru,
+          capital:Lima,
+           flagcode:🇵🇪,
+         flag:https://flagcdn.com/w320/pe.png
+task9c.js:11 countryname:Turkmenistan,
+          capital:Ashgabat,
+           flagcode:🇹🇲,
+         flag:https://flagcdn.com/w320/tm.png
+task9c.js:11 countryname:Lithuania,
+          capital:Vilnius,
+           flagcode:🇱🇹,
+         flag:https://flagcdn.com/w320/lt.png
+task9c.js:11 countryname:Ethiopia,
+          capital:Addis Ababa,
+           flagcode:🇪🇹,
+         flag:https://flagcdn.com/w320/et.png
+task9c.js:11 countryname:Moldova,
+          capital:Chișinău,
+           flagcode:🇲🇩,
+         flag:https://flagcdn.com/w320/md.png
+task9c.js:11 countryname:San Marino,
+          capital:City of San Marino,
+           flagcode:🇸🇲,
+         flag:https://flagcdn.com/w320/sm.png
+task9c.js:11 countryname:Timor-Leste,
+          capital:Dili,
+           flagcode:🇹🇱,
+         flag:https://flagcdn.com/w320/tl.png
+task9c.js:11 countryname:French Guiana,
+          capital:Cayenne,
+           flagcode:🇬🇫,
+         flag:https://flagcdn.com/w320/gf.png
+task9c.js:11 countryname:Libya,
+          capital:Tripoli,
+           flagcode:🇱🇾,
+         flag:https://flagcdn.com/w320/ly.png
+task9c.js:11 countryname:Lebanon,
+          capital:Beirut,
+           flagcode:🇱🇧,
+         flag:https://flagcdn.com/w320/lb.png
+task9c.js:11 countryname:Kazakhstan,
+          capital:Nur-Sultan,
+           flagcode:🇰🇿,
+         flag:https://flagcdn.com/w320/kz.png
+task9c.js:11 countryname:Gibraltar,
+          capital:Gibraltar,
+           flagcode:🇬🇮,
+         flag:https://flagcdn.com/w320/gi.png
+task9c.js:11 countryname:Kosovo,
+          capital:Pristina,
+           flagcode:🇽🇰,
+         flag:https://flagcdn.com/w320/xk.png
+task9c.js:11 countryname:United Kingdom,
+          capital:London,
+           flagcode:🇬🇧,
+         flag:https://flagcdn.com/w320/gb.png
+task9c.js:11 countryname:Tuvalu,
+          capital:Funafuti,
+           flagcode:🇹🇻,
+         flag:https://flagcdn.com/w320/tv.png
+task9c.js:11 countryname:Norfolk Island,
+          capital:Kingston,
+           flagcode:🇳🇫,
+         flag:https://flagcdn.com/w320/nf.png
+task9c.js:11 countryname:Kyrgyzstan,
+          capital:Bishkek,
+           flagcode:🇰🇬,
+         flag:https://flagcdn.com/w320/kg.png
+task9c.js:11 countryname:Hungary,
+          capital:Budapest,
+           flagcode:🇭🇺,
+         flag:https://flagcdn.com/w320/hu.png
+task9c.js:11 countryname:Falkland Islands,
+          capital:Stanley,
+           flagcode:🇫🇰,
+         flag:https://flagcdn.com/w320/fk.png
+task9c.js:11 countryname:France,
+          capital:Paris,
+           flagcode:🇫🇷,
+         flag:https://flagcdn.com/w320/fr.png
+task9c.js:11 countryname:Sri Lanka,
+          capital:Sri Jayawardenepura Kotte,
+           flagcode:🇱🇰,
+         flag:https://flagcdn.com/w320/lk.png
+task9c.js:11 countryname:Mayotte,
+          capital:Mamoudzou,
+           flagcode:🇾🇹,
+         flag:https://flagcdn.com/w320/yt.png
+task9c.js:11 countryname:Egypt,
+          capital:Cairo,
+           flagcode:🇪🇬,
+         flag:https://flagcdn.com/w320/eg.png
+task9c.js:11 countryname:North Macedonia,
+          capital:Skopje,
+           flagcode:🇲🇰,
+         flag:https://flagcdn.com/w320/mk.png
+task9c.js:11 countryname:Thailand,
+          capital:Bangkok,
+           flagcode:🇹🇭,
+         flag:https://flagcdn.com/w320/th.png
+task9c.js:11 countryname:Lesotho,
+          capital:Maseru,
+           flagcode:🇱🇸,
+         flag:https://flagcdn.com/w320/ls.png
+task9c.js:11 countryname:Sierra Leone,
+          capital:Freetown,
+           flagcode:🇸🇱,
+         flag:https://flagcdn.com/w320/sl.png
+task9c.js:11 countryname:Liberia,
+          capital:Monrovia,
+           flagcode:🇱🇷,
+         flag:https://flagcdn.com/w320/lr.png
+task9c.js:11 countryname:Belgium,
+          capital:Brussels,
+           flagcode:🇧🇪,
+         flag:https://flagcdn.com/w320/be.png
+task9c.js:11 countryname:Micronesia,
+          capital:Palikir,
+           flagcode:🇫🇲,
+         flag:https://flagcdn.com/w320/fm.png
+task9c.js:11 countryname:Equatorial Guinea,
+          capital:Malabo,
+           flagcode:🇬🇶,
+         flag:https://flagcdn.com/w320/gq.png
+task9c.js:11 countryname:Isle of Man,
+          capital:Douglas,
+           flagcode:🇮🇲,
+         flag:https://flagcdn.com/w320/im.png
+task9c.js:11 countryname:Costa Rica,
+          capital:San José,
+           flagcode:🇨🇷,
+         flag:https://flagcdn.com/w320/cr.png
+task9c.js:11 countryname:Germany,
+          capital:Berlin,
+           flagcode:🇩🇪,
+         flag:https://flagcdn.com/w320/de.png
+task9c.js:11 countryname:Mauritania,
+          capital:Nouakchott,
+           flagcode:🇲🇷,
+         flag:https://flagcdn.com/w320/mr.png
+task9c.js:11 countryname:Switzerland,
+          capital:Bern,
+           flagcode:🇨🇭,
+         flag:https://flagcdn.com/w320/ch.png
+task9c.js:11 countryname:Vatican City,
+          capital:Vatican City,
+           flagcode:🇻🇦,
+         flag:https://flagcdn.com/w320/va.png
+task9c.js:11 countryname:United States Minor Outlying Islands,
+          capital:undefined,
+           flagcode:🇺🇲,
+         flag:https://flagcdn.com/w320/um.png
+task9c.js:11 countryname:Vietnam,
+          capital:Hanoi,
+           flagcode:🇻🇳,
+         flag:https://flagcdn.com/w320/vn.png
+task9c.js:11 countryname:South Sudan,
+          capital:Juba,
+           flagcode:🇸🇸,
+         flag:https://flagcdn.com/w320/ss.png
+task9c.js:11 countryname:South Africa,
+          capital:Pretoria,Bloemfontein,Cape Town,
+           flagcode:🇿🇦,
+         flag:https://flagcdn.com/w320/za.png
+task9c.js:11 countryname:DR Congo,
+          capital:Kinshasa,
+           flagcode:🇨🇩,
+         flag:https://flagcdn.com/w320/cd.png
+task9c.js:11 countryname:Trinidad and Tobago,
+          capital:Port of Spain,
+           flagcode:🇹🇹,
+         flag:https://flagcdn.com/w320/tt.png
+task9c.js:11 countryname:Mali,
+          capital:Bamako,
+           flagcode:🇲🇱,
+         flag:https://flagcdn.com/w320/ml.png
+task9c.js:11 countryname:Svalbard and Jan Mayen,
+          capital:Longyearbyen,
+           flagcode:🇸🇯,
+         flag:https://flagcdn.com/w320/sj.png
+task9c.js:11 countryname:Algeria,
+          capital:Algiers,
+           flagcode:🇩🇿,
+         flag:https://flagcdn.com/w320/dz.png
+task9c.js:11 countryname:Palestine,
+          capital:Ramallah,
+           flagcode:🇵🇸,
+         flag:https://flagcdn.com/w320/ps.png
+task9c.js:11 countryname:Slovakia,
+          capital:Bratislava,
+           flagcode:🇸🇰,
+         flag:https://flagcdn.com/w320/sk.png
+task9c.js:11 countryname:Mozambique,
+          capital:Maputo,
+           flagcode:🇲🇿,
+         flag:https://flagcdn.com/w320/mz.png
+task9c.js:11 countryname:Argentina,
+          capital:Buenos Aires,
+           flagcode:🇦🇷,
+         flag:https://flagcdn.com/w320/ar.png
+task9c.js:11 countryname:Czechia,
+          capital:Prague,
+           flagcode:🇨🇿,
+         flag:https://flagcdn.com/w320/cz.png
+task9c.js:11 countryname:Fiji,
+          capital:Suva,
+           flagcode:🇫🇯,
+         flag:https://flagcdn.com/w320/fj.png
+task9c.js:11 countryname:American Samoa,
+          capital:Pago Pago,
+           flagcode:🇦🇸,
+         flag:https://flagcdn.com/w320/as.png
+task9c.js:11 countryname:Greenland,
+          capital:Nuuk,
+           flagcode:🇬🇱,
+         flag:https://flagcdn.com/w320/gl.png
+task9c.js:11 countryname:Poland,
+          capital:Warsaw,
+           flagcode:🇵🇱,
+         flag:https://flagcdn.com/w320/pl.png
+task9c.js:11 countryname:British Indian Ocean Territory,
+          capital:Diego Garcia,
+           flagcode:🇮🇴,
+         flag:https://flagcdn.com/w320/io.png
+task9c.js:11 countryname:Vanuatu,
+          capital:Port Vila,
+           flagcode:🇻🇺,
+         flag:https://flagcdn.com/w320/vu.png
+task9c.js:11 countryname:Syria,
+          capital:Damascus,
+           flagcode:🇸🇾,
+         flag:https://flagcdn.com/w320/sy.png
+task9c.js:11 countryname:Antarctica,
+          capital:undefined,
+           flagcode:🇦🇶,
+         flag:https://flagcdn.com/w320/aq.png
+task9c.js:11 countryname:Suriname,
+          capital:Paramaribo,
+           flagcode:🇸🇷,
+         flag:https://flagcdn.com/w320/sr.png
+task9c.js:11 countryname:Angola,
+          capital:Luanda,
+           flagcode:🇦🇴,
+         flag:https://flagcdn.com/w320/ao.png
+task9c.js:11 countryname:Belize,
+          capital:Belmopan,
+           flagcode:🇧🇿,
+         flag:https://flagcdn.com/w320/bz.png
+task9c.js:11 countryname:Grenada,
+          capital:St. George's,
+           flagcode:🇬🇩,
+         flag:https://flagcdn.com/w320/gd.png
+task9c.js:11 countryname:Montenegro,
+          capital:Podgorica,
+           flagcode:🇲🇪,
+         flag:https://flagcdn.com/w320/me.png
+task9c.js:11 countryname:Heard Island and McDonald Islands,
+          capital:undefined,
+           flagcode:🇭🇲,
+         flag:https://flagcdn.com/w320/hm.png
+task9c.js:11 countryname:Israel,
+          capital:Jerusalem,
+           flagcode:🇮🇱,
+         flag:https://flagcdn.com/w320/il.png
+task9c.js:11 countryname:Guinea-Bissau,
+          capital:Bissau,
+           flagcode:🇬🇼,
+         flag:https://flagcdn.com/w320/gw.png
+task9c.js:11 countryname:Nicaragua,
+          capital:Managua,
+           flagcode:🇳🇮,
+         flag:https://flagcdn.com/w320/ni.png
+task9c.js:11 countryname:Macau,
+          capital:undefined,
+           flagcode:🇲🇴,
+         flag:https://flagcdn.com/w320/mo.png
+task9c.js:11 countryname:Philippines,
+          capital:Manila,
+           flagcode:🇵🇭,
+         flag:https://flagcdn.com/w320/ph.png
+task9c.js:11 countryname:Ivory Coast,
+          capital:Yamoussoukro,
+           flagcode:🇨🇮,
+         flag:https://flagcdn.com/w320/ci.png
+task9c.js:11 countryname:Taiwan,
+          capital:Taipei,
+           flagcode:🇹🇼,
+         flag:https://flagcdn.com/w320/tw.png
+task9c.js:11 countryname:Rwanda,
+          capital:Kigali,
+           flagcode:🇷🇼,
+         flag:https://flagcdn.com/w320/rw.png
+task9c.js:11 countryname:Saint Martin,
+          capital:Marigot,
+           flagcode:🇲🇫,
+         flag:https://flagcdn.com/w320/mf.png
+task9c.js:11 countryname:Saudi Arabia,
+          capital:Riyadh,
+           flagcode:🇸🇦,
+         flag:https://flagcdn.com/w320/sa.png
+task9c.js:11 countryname:Burkina Faso,
+          capital:Ouagadougou,
+           flagcode:🇧🇫,
+         flag:https://flagcdn.com/w320/bf.png
+task9c.js:11 countryname:Niger,
+          capital:Niamey,
+           flagcode:🇳🇪,
+         flag:https://flagcdn.com/w320/ne.png
+task9c.js:11 countryname:Panama,
+          capital:Panama City,
+           flagcode:🇵🇦,
+         flag:https://flagcdn.com/w320/pa.png
+task9c.js:11 countryname:Caribbean Netherlands,
+          capital:Kralendijk,
+           flagcode:undefined,
+         flag:https://flagcdn.com/w320/bq.png
+task9c.js:11 countryname:Cocos (Keeling) Islands,
+          capital:West Island,
+           flagcode:🇨🇨,
+         flag:https://flagcdn.com/w320/cc.png
+task9c.js:11 countryname:South Korea,
+          capital:Seoul,
+           flagcode:🇰🇷,
+         flag:https://flagcdn.com/w320/kr.png
+task9c.js:11 countryname:Italy,
+          capital:Rome,
+           flagcode:🇮🇹,
+         flag:https://flagcdn.com/w320/it.png
+task9c.js:11 countryname:Central African Republic,
+          capital:Bangui,
+           flagcode:🇨🇫,
+         flag:https://flagcdn.com/w320/cf.png
+task9c.js:11 countryname:Saint Helena, Ascension and Tristan da Cunha,
+          capital:Jamestown,
+           flagcode:🇸🇭,
+         flag:https://flagcdn.com/w320/sh.png
+task9c.js:11 countryname:Georgia,
+          capital:Tbilisi,
+           flagcode:🇬🇪,
+         flag:https://flagcdn.com/w320/ge.png
+task9c.js:11 countryname:Colombia,
+          capital:Bogotá,
+           flagcode:🇨🇴,
+         flag:https://flagcdn.com/w320/co.png
+task9c.js:11 countryname:Comoros,
+          capital:Moroni,
+           flagcode:🇰🇲,
+         flag:https://flagcdn.com/w320/km.png
+task9c.js:11 countryname:Tajikistan,
+          capital:Dushanbe,
+           flagcode:🇹🇯,
+         flag:https://flagcdn.com/w320/tj.png
+task9c.js:11 countryname:Cayman Islands,
+          capital:George Town,
+           flagcode:🇰🇾,
+         flag:https://flagcdn.com/w320/ky.png
+task9c.js:11 countryname:Luxembourg,
+          capital:Luxembourg,
+           flagcode:🇱🇺,
+         flag:https://flagcdn.com/w320/lu.png
+task9c.js:11 countryname:Kiribati,
+          capital:South Tarawa,
+           flagcode:🇰🇮,
+         flag:https://flagcdn.com/w320/ki.png
+task9c.js:11 countryname:Andorra,
+          capital:Andorra la Vella,
+           flagcode:🇦🇩,
+         flag:https://flagcdn.com/w320/ad.png
+task9c.js:11 countryname:Pitcairn Islands,
+          capital:Adamstown,
+           flagcode:🇵🇳,
+         flag:https://flagcdn.com/w320/pn.png
+task9c.js:11 countryname:Russia,
+          capital:Moscow,
+           flagcode:🇷🇺,
+         flag:https://flagcdn.com/w320/ru.png
+task9c.js:11 countryname:Jamaica,
+          capital:Kingston,
+           flagcode:🇯🇲,
+         flag:https://flagcdn.com/w320/jm.png
+task9c.js:11 countryname:Cuba,
+          capital:Havana,
+           flagcode:🇨🇺,
+         flag:https://flagcdn.com/w320/cu.png
+task9c.js:11 countryname:Senegal,
+          capital:Dakar,
+           flagcode:🇸🇳,
+         flag:https://flagcdn.com/w320/sn.png
+task9c.js:11 countryname:Bahamas,
+          capital:Nassau,
+           flagcode:🇧🇸,
+         flag:https://flagcdn.com/w320/bs.png
+task9c.js:11 countryname:Djibouti,
+          capital:Djibouti,
+           flagcode:🇩🇯,
+         flag:https://flagcdn.com/w320/dj.png
+task9c.js:11 countryname:Brazil,
+          capital:Brasília,
+           flagcode:🇧🇷,
+         flag:https://flagcdn.com/w320/br.png
+task9c.js:11 countryname:Sudan,
+          capital:Khartoum,
+           flagcode:🇸🇩,
+         flag:https://flagcdn.com/w320/sd.png
+task9c.js:11 countryname:Tunisia,
+          capital:Tunis,
+           flagcode:🇹🇳,
+         flag:https://flagcdn.com/w320/tn.png
+task9c.js:11 countryname:Cyprus,
+          capital:Nicosia,
+           flagcode:🇨🇾,
+         flag:https://flagcdn.com/w320/cy.png
+task9c.js:11 countryname:Morocco,
+          capital:Rabat,
+           flagcode:🇲🇦,
+         flag:https://flagcdn.com/w320/ma.png
+task9c.js:11 countryname:Anguilla,
+          capital:The Valley,
+           flagcode:🇦🇮,
+         flag:https://flagcdn.com/w320/ai.png
+task9c.js:11 countryname:United Arab Emirates,
+          capital:Abu Dhabi,
+           flagcode:🇦🇪,
+         flag:https://flagcdn.com/w320/ae.png
+task9c.js:11 countryname:Western Sahara,
+          capital:El Aaiún,
+           flagcode:🇪🇭,
+         flag:https://flagcdn.com/w320/eh.png
+task9c.js:11 countryname:Namibia,
+          capital:Windhoek,
+           flagcode:🇳🇦,
+         flag:https://flagcdn.com/w320/na.png
+task9c.js:11 countryname:Bulgaria,
+          capital:Sofia,
+           flagcode:🇧🇬,
+         flag:https://flagcdn.com/w320/bg.png
+task9c.js:11 countryname:Kenya,
+          capital:Nairobi,
+           flagcode:🇰🇪,
+         flag:https://flagcdn.com/w320/ke.png
+task9c.js:11 countryname:Eswatini,
+          capital:Mbabane,
+           flagcode:🇸🇿,
+         flag:https://flagcdn.com/w320/sz.png
+task9c.js:11 countryname:Iran,
+          capital:Tehran,
+           flagcode:🇮🇷,
+         flag:https://flagcdn.com/w320/ir.png
+task9c.js:11 countryname:Laos,
+          capital:Vientiane,
+           flagcode:🇱🇦,
+         flag:https://flagcdn.com/w320/la.png
+task9c.js:11 countryname:Dominican Republic,
+          capital:Santo Domingo,
+           flagcode:🇩🇴,
+         flag:https://flagcdn.com/w320/do.png
+task9c.js:11 countryname:São Tomé and Príncipe,
+          capital:São Tomé,
+           flagcode:🇸🇹,
+         flag:https://flagcdn.com/w320/st.png
+task9c.js:11 countryname:Estonia,
+          capital:Tallinn,
+           flagcode:🇪🇪,
+         flag:https://flagcdn.com/w320/ee.png
+task9c.js:11 countryname:United States,
+          capital:Washington, D.C.,
+           flagcode:🇺🇸,
+         flag:https://flagcdn.com/w320/us.png
+task9c.js:11 countryname:Afghanistan,
+          capital:Kabul,
+           flagcode:🇦🇫,
+         flag:https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_the_Taliban.svg/320px-Flag_of_the_Taliban.svg.png
+task9c.js:11 countryname:Gabon,
+          capital:Libreville,
+           flagcode:🇬🇦,
+         flag:https://flagcdn.com/w320/ga.png
+task9c.js:11 countryname:French Polynesia,
+          capital:Papeetē,
+           flagcode:🇵🇫,
+         flag:https://flagcdn.com/w320/pf.png
+task9c.js:11 countryname:Kuwait,
+          capital:Kuwait City,
+           flagcode:🇰🇼,
+         flag:https://flagcdn.com/w320/kw.png
+task9c.js:11 countryname:Papua New Guinea,
+          capital:Port Moresby,
+           flagcode:🇵🇬,
+         flag:https://flagcdn.com/w320/pg.png
+task9c.js:11 countryname:Chile,
+          capital:Santiago,
+           flagcode:🇨🇱,
+         flag:https://flagcdn.com/w320/cl.png
+task9c.js:11 countryname:India,
+          capital:New Delhi,
+           flagcode:🇮🇳,
+         flag:https://flagcdn.com/w320/in.png
+task9c.js:11 countryname:Jordan,
+          capital:Amman,
+           flagcode:🇯🇴,
+         flag:https://flagcdn.com/w320/jo.png
+task9c.js:11 countryname:Uganda,
+          capital:Kampala,
+           flagcode:🇺🇬,
+         flag:https://flagcdn.com/w320/ug.png
+task9c.js:11 countryname:Albania,
+          capital:Tirana,
+           flagcode:🇦🇱,
+         flag:https://flagcdn.com/w320/al.png
+task9c.js:11 countryname:China,
+          capital:Beijing,
+           flagcode:🇨🇳,
+         flag:https://flagcdn.com/w320/cn.png
+task9c.js:11 countryname:Burundi,
+          capital:Gitega,
+           flagcode:🇧🇮,
+         flag:https://flagcdn.com/w320/bi.png
+task9c.js:11 countryname:Azerbaijan,
+          capital:Baku,
+           flagcode:🇦🇿,
+         flag:https://flagcdn.com/w320/az.png
+task9c.js:11 countryname:Bahrain,
+          capital:Manama,
+           flagcode:🇧🇭,
+         flag:https://flagcdn.com/w320/bh.png
+task9c.js:11 countryname:Slovenia,
+          capital:Ljubljana,
+           flagcode:🇸🇮,
+         flag:https://flagcdn.com/w320/si.png
+task9c.js:11 countryname:Zambia,
+          capital:Lusaka,
+           flagcode:🇿🇲,
+         flag:https://flagcdn.com/w320/zm.png
+task9c.js:11 countryname:Spain,
+          capital:Madrid,
+           flagcode:🇪🇸,
+         flag:https://flagcdn.com/w320/es.png
+task9c.js:11 countryname:Benin,
+          capital:Porto-Novo,
+           flagcode:🇧🇯,
+         flag:https://flagcdn.com/w320/bj.png
+task9c.js:11 countryname:Cape Verde,
+          capital:Praia,
+           flagcode:🇨🇻,
+         flag:https://flagcdn.com/w320/cv.png
+task9c.js:11 countryname:Brunei,
+          capital:Bandar Seri Begawan,
+           flagcode:🇧🇳,
+         flag:https://flagcdn.com/w320/bn.png
+task9c.js:11 countryname:Marshall Islands,
+          capital:Majuro,
+           flagcode:🇲🇭,
+         flag:https://flagcdn.com/w320/mh.png
+
+
+d.Print the total population of countries using reduce function
+
+Answer:
+var xhr=new XMLHttpRequest();
+xhr.open('GET',"https://restcountries.com/v3.1/all");
+xhr.onload=function(){
+     if(xhr.status>=200 && xhr.status<300)
+  {
+     let data=JSON.parse(this.response);
+     let Totalpopulation=  data.reduce((acc,cur)=>
+     {
+         return acc+cur.population;
+      },0)
+      console.log(`total population is ${Totalpopulation}`);
+}
+}
+xhr.send();
+
+Output:
+
+task9d.js:11   total population is 7798590363
+
+
+e.Print the country which uses US Dollars as currency.
+
+Answer:
+var xhr=new XMLHttpRequest();
+xhr.open('GET',"https://restcountries.com/v3.1/all");
+xhr.onload=function(){
+     if(xhr.status>=200 && xhr.status<300)
+  {
+     let data=JSON.parse(this.response);
+      data=data.filter((ref)=>
+      {
+      let usdollars={"USD":{"name":"United States dollar","symbol":"$"}}
+       if(JSON.stringify(ref.currencies)===JSON.stringify(usdollars))
+     {
+         console.log(ref.name.common);
+     }
+      })
+  }
+}
+xhr.send();
+//in the above program converted object to string using stringify and compared it with
+//us dollars by converting it to string
+Output:
+
+task9e.js:12 Turks and Caicos Islands
+task9e.js:12 Ecuador
+task9e.js:12 United States Virgin Islands
+task9e.js:12 Northern Mariana Islands
+task9e.js:12 Palau
+task9e.js:12 Guam
+task9e.js:12 El Salvador
+task9e.js:12 Puerto Rico
+task9e.js:12 British Virgin Islands
+task9e.js:12 Timor-Leste
+task9e.js:12 Micronesia
+task9e.js:12 United States Minor Outlying Islands
+task9e.js:12 American Samoa
+task9e.js:12 British Indian Ocean Territory
+task9e.js:12 Caribbean Netherlands
+task9e.js:12 United States
+task9e.js:12 Marshall Islands
+
+
